@@ -29,6 +29,8 @@
 
 # TODO
 
+1. 설치
+
 - [x] npm 설치
 - [x] vite 로 react 설치
 - [x] tailwind css 설치
