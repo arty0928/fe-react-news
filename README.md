@@ -26,3 +26,9 @@
    - 전체 언론사
    - 내가 구독한 언론사
 5. 다크모드 (옵션)
+
+# TODO
+
+- [x] npm 설치
+- [x] vite 로 react 설치
+- [x] tailwind css 설치
