@@ -34,3 +34,20 @@
 - [x] npm 설치
 - [x] vite 로 react 설치
 - [x] tailwind css 설치
+
+2. 폴더 구조 논의
+
+- shared
+
+3. 컴포넌트 명칭, 계층 정하기
+
+- 뉴스 도메인은 다 news로 이름 통일
+
+4. 컨벤션
+
+- [x] 폴더명: kebab-case
+- [x] 컴포넌트명: PascalCase
+
+5. 개발
+
+- [ ] 계층대로 퍼블리싱
