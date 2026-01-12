@@ -35,11 +35,27 @@
 - [x] vite 로 react 설치
 - [x] tailwind css 설치
 
-2. 폴더 구조 논의
+2. [x] 폴더 구조 논의
 
-- shared
+```
+📦src
+ ┣ 📂components
+ ┃ ┣ 📜Header.tsx
+ ┃ ┣ 📜LatestNewsCard.tsx
+ ┃ ┣ 📜LatestNewsSection.tsx
+ ┃ ┣ 📜NewsScopeTab.tsx
+ ┃ ┣ 📜NewsStand.tsx
+ ┃ ┣ 📜NewsStandTabs.tsx
+ ┃ ┗ 📜NewsViewOptionTab.tsx
+ ┣ 📂types
+ ┃ ┗ 📜news.ts
+ ┣ 📜App.css
+ ┣ 📜App.tsx
+ ┣ 📜index.css
+ ┗ 📜main.tsx
+```
 
-3. 컴포넌트 명칭, 계층 정하기
+3. [x] 컴포넌트 명칭, 계층 정하기
 
 - 뉴스 도메인은 다 news로 이름 통일
 
@@ -50,4 +66,4 @@
 
 5. 개발
 
-- [ ] 계층대로 퍼블리싱
+- [x] 계층대로 퍼블리싱
