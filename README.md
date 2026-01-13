@@ -69,6 +69,15 @@
 - [x] 계층대로 퍼블리싱
 - [x] newsView 컴포넌트 생성
 - [x] 기본 CSS 위치 잡기
-- [ ] 데이터 받아오기
+
+- news-view
+- [x] tanstack - query provider로 전역 상태 관리
+- [x] 데이터 받아오기
+- [x] 받아온 데이터 형식 mapping
+- [x] 뉴스 데이터 24개씩 보여주기
+
+  - [ ] pagination 좌우 이동
+  - [ ] pagination 4페이지 제한
+
 - [ ] 리렌더링 최소화 전략 설계
 - [ ] 롤링 최적화 설계
