@@ -13,10 +13,10 @@ const mock = [
 
 export const LatestNewsSection = () => {
   return (
-    <>
-      {mock.map((news) => (
-        <LatestNewsCard press={news.press} title={news.title} />
+    <div className="grid grid-cols-2 gap-4 px-6 py-4 border-b">
+      {mock.map((news, index) => (
+        <LatestNewsCard key={index} press={news.press} title={news.title} />
       ))}
-    </>
+    </div>
   );
 };
