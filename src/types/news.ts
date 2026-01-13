@@ -1,4 +1,5 @@
 export type News = {
+  id: string;
   press: string;
-  title: string;
+  mainTitle: string;
 };
