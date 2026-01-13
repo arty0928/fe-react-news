@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Header } from './components/Header';
-import { LatestNewsSection } from './components/LatestNewsSection';
-import { NewsStand } from './components/NewsStand';
+import { LatestNewsSection } from './latest-news/components/LatestNewsSection';
+import { NewsStand } from './news-stand/components/NewsStand';
+import { Header } from './shared/components/Header';
 
 const queryClient = new QueryClient();
 

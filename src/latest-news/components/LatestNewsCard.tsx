@@ -1,4 +1,4 @@
-import type { News } from '../types/news.js';
+import type { News } from '../../types/news.js';
 
 export const LatestNewsCard = ({ press, title }: News) => {
   return (
