@@ -1,5 +1,5 @@
-import { NewsScopeTab } from './NewsScopeTab';
-import { NewsViewOptionTab } from './NewsViewOptionTab';
+import { NewsScopeTab } from '../news-stand-tabs/NewsScopeTab';
+import { NewsViewOptionTab } from '../news-view/NewsViewOptionTab';
 
 export const NewsStandTabs = () => {
   return (
