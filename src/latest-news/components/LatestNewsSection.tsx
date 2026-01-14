@@ -1,16 +1,49 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 import { fetchNews } from '../../apis/fetchNews';
 import { LatestNewsCard } from './LatestNewsCard';
 
 const LATEST_NEWS_COUNT = 2;
+const LATEST_NEWS_LEN = 5;
+const GAP = 1000;
+const ROLLING_INTERVAL = 5000;
 
 export const LatestNewsSection = () => {
-  const { data } = useSuspenseQuery({ queryFn: fetchNews, queryKey: ['news'] });
+  const { data } = useSuspenseQuery({
+    queryFn: () => fetchNews(null, LATEST_NEWS_COUNT * LATEST_NEWS_LEN, 'next'),
+    queryKey: ['news'],
+  });
+
+  const [cursor, setCursor] = useState<number>(0);
+  const [array, setArray] = useState<number[]>(
+    Array.from({ length: LATEST_NEWS_COUNT }, (_, i) => i),
+  );
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCursor((prev) => prev + 1);
+    }, ROLLING_INTERVAL);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    if (cursor === 0) return;
+
+    array.forEach((_, i) => {
+      setTimeout(() => {
+        setArray((prevArray) => {
+          const newArray = [...prevArray];
+          newArray[i] = (newArray[i] + LATEST_NEWS_COUNT) % (LATEST_NEWS_COUNT * LATEST_NEWS_LEN);
+          return newArray;
+        });
+      }, i * GAP);
+    });
+  }, [cursor]);
 
   return (
     <div className="grid grid-cols-2 gap-4 px-6 py-4 border-b">
-      {data.slice(0, LATEST_NEWS_COUNT).map((news) => (
-        <LatestNewsCard key={news.id} press={news.press} mainTitle={news.mainTitle} />
+      {array.map((index) => (
+        <LatestNewsCard key={index} {...data.data[index]} />
       ))}
     </div>
   );
