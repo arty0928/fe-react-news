@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { fetchNews } from '../../apis/fetchNews';
 import { LatestNewsCard } from './LatestNewsCard';
 
@@ -19,8 +19,14 @@ export const LatestNewsSection = () => {
     Array.from({ length: LATEST_NEWS_COUNT }, (_, i) => i),
   );
 
+  const isRollingRef = useRef(true);
+
   useEffect(() => {
     const timer = setInterval(() => {
+      if (!isRollingRef.current) {
+        return;
+      }
+      // 카드에 hover를 했을때 아래 cursor를 변경하는 부분을 무시하도록
       setCursor((prev) => prev + 1);
     }, ROLLING_INTERVAL);
     return () => clearInterval(timer);
@@ -31,6 +37,9 @@ export const LatestNewsSection = () => {
 
     array.forEach((_, i) => {
       setTimeout(() => {
+        if (!isRollingRef.current) {
+          return;
+        }
         setArray((prevArray) => {
           const newArray = [...prevArray];
           newArray[i] = (newArray[i] + LATEST_NEWS_COUNT) % (LATEST_NEWS_COUNT * LATEST_NEWS_LEN);
@@ -43,7 +52,16 @@ export const LatestNewsSection = () => {
   return (
     <div className="grid grid-cols-2 gap-4 px-6 py-4 border-b">
       {array.map((index) => (
-        <LatestNewsCard key={index} {...data.data[index]} />
+        <LatestNewsCard
+          key={index}
+          {...data.data[index]}
+          onMouseOver={() => {
+            isRollingRef.current = false;
+          }}
+          onMouseLeave={() => {
+            isRollingRef.current = true;
+          }}
+        />
       ))}
     </div>
   );
