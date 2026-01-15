@@ -15,8 +15,8 @@ export const LatestNewsSection = () => {
   });
 
   const [cursor, setCursor] = useState<number>(0);
-  const [array, setArray] = useState<number[]>(
-    Array.from({ length: LATEST_NEWS_COUNT }, (_, i) => i),
+  const [array, setArray] = useState<number[][]>(
+    Array.from({ length: LATEST_NEWS_COUNT }, (_, i) => [i, i + 2]),
   );
 
   const isRollingRef = useRef(true);
@@ -42,7 +42,9 @@ export const LatestNewsSection = () => {
         }
         setArray((prevArray) => {
           const newArray = [...prevArray];
-          newArray[i] = (newArray[i] + LATEST_NEWS_COUNT) % (LATEST_NEWS_COUNT * LATEST_NEWS_LEN);
+          newArray[i] = newArray[i].map(
+            (index) => (index + LATEST_NEWS_COUNT) % (LATEST_NEWS_COUNT * LATEST_NEWS_LEN),
+          );
           return newArray;
         });
       }, i * GAP);
@@ -51,10 +53,12 @@ export const LatestNewsSection = () => {
 
   return (
     <div className="grid grid-cols-2 gap-4 px-6 py-4 border-b">
-      {array.map((index) => (
+      {array.map(([first, second], i) => (
         <LatestNewsCard
-          key={index}
-          {...data.data[index]}
+          key={i}
+          first={first}
+          second={second}
+          newsList={[data.data[first], data.data[second]]}
           onMouseOver={() => {
             isRollingRef.current = false;
           }}
